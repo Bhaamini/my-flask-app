@@ -1,20 +1,15 @@
-# Use official Python image
-FROM python:3.11-slim
+FROM python:3.10-slim
 
-# Set working directory inside container
 WORKDIR /app
 
-# Copy requirements first (for faster builds)
 COPY requirements.txt .
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
-COPY . .
+COPY app.py .
 
-# Expose port 5000
-EXPOSE 5000
+RUN useradd --create-home appuser
+USER appuser
 
-# Run the app
-CMD ["python", "app.py"]
+EXPOSE 8080
+
+CMD ["waitress-serve", "--listen=0.0.0.0:8080", "app:app"]

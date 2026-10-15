@@ -2,13 +2,16 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return "<h1>Hello from Flask! 🚀</h1><p>My first Dockerised web app.</p>"
 
-@app.route("/health")
+@app.get("/")
+def home():
+    return "<h1>My DevOps Portfolio App</h1><p>Flask is running.</p>"
+
+
+@app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok"}, 200
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
