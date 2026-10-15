@@ -89,14 +89,14 @@ my-flask-app/
 
 ### Run with Docker
 
-1. **Build the Docker image**
-   ```bash
-   docker build -t my-flask-app .
-   ```
+Build the image:
+
+```bash
+docker build -t flask-devops:1.0 .
 
 2. **Run the container**
    ```bash
-   docker run -p 5000:5000 my-flask-app
+   docker run --rm --name flask-devops -p 8080:8080 flask-devops:1.0
    ```
 
 3. Open your browser at **http://localhost:5000**
@@ -119,16 +119,13 @@ my-flask-app/
 
 ## Docker Commands
 
-| Command | Description |
-|---------|-------------|
-| `docker build -t my-flask-app .` | Build the Docker image |
-| `docker run -p 5000:5000 my-flask-app` | Run the container |
-| `docker run -d -p 5000:5000 my-flask-app` | Run in background |
+| Command | Purpose |
+|---------|---------|
+| `docker build -t flask-devops:1.0 .` | Build this project's Docker image |
+| `docker run --rm --name flask-devops -p 8080:8080 flask-devops:1.0` | Run the app container |
+| `docker images flask-devops` | List this project's images |
 | `docker ps` | List running containers |
-| `docker ps -a` | List all containers |
-| `docker stop <container_id>` | Stop a container |
-| `docker rm <container_id>` | Remove a container |
-
+| `docker ps -a` | List all containers, including stopped ones |
 ---
 
 ## GitHub
